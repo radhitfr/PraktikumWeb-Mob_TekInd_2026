@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Quality Control</title>
+    <link rel="stylesheet" href="Latihan2.css">
+</head>
+<body>
+
+    <div class="dashboard-card">
+        <div class="header">
+            <h2>📊 Laporan Quality Control</h2>
+            <p>Sistem Deteksi Cacat Produksi (Shift 1)</p>
+        </div>
+
+        <div class="data-section">
+            <h3>Log Data Masuk:</h3>
+            <div id="dataList" class="badge-container">
+                </div>
+        </div>
+
+        <button class="btn-analisis" onclick="analisisData()">🔍 Hitung Total "C-001"</button>
+
+        <div class="result-section">
+            <p>Jumlah Kemunculan C-001:</p>
+            <h1 id="hasilHitung">-</h1>
+        </div>
+    </div>
+
+    <script src="latihan2.js"></script>
+</body>
+</html>

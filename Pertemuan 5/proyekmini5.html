@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Antrian Job Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="control-panel">
+        <div class="panel-header">
+            <div class="status-light"></div>
+            <h2>JOB SHOP CONTROL SYSTEM</h2>
+        </div>
+
+        <div class="form-container">
+            <h3>[ INPUT DATA MESIN ]</h3>
+            <div class="input-grid">
+                <div class="input-box">
+                    <label>ID Job</label>
+                    <input type="text" id="idJob" placeholder="Ex: J04" autocomplete="off">
+                </div>
+                <div class="input-box">
+                    <label>Nama Proses</label>
+                    <input type="text" id="namaProses" placeholder="Ex: Grinding" autocomplete="off">
+                </div>
+                <div class="input-box">
+                    <label>Durasi (Menit)</label>
+                    <input type="number" id="durasi" placeholder="0" min="1">
+                </div>
+            </div>
+            
+            <button class="btn-tambah" onclick="tambahJob()">[+] TAMBAH KE ANTRIAN</button>
+        </div>
+
+        <button class="btn-proses" onclick="jalankanProses()">[▶] EKSEKUSI & TAMPILKAN ANTRIAN</button>
+
+        <div class="terminal-screen">
+            <div class="terminal-header">TERMINAL OUTPUT >></div>
+            <div id="output" class="terminal-body">
+                <i>Menunggu instruksi eksekusi...</i>
+            </div>
+        </div>
+    </div>
+
+    <script src="proyekmini5.js"></script>
+</body>
+</html>
