@@ -1,0 +1,109 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #dbeafe, #f8fafc);
+    min-height: 100vh;
+}
+
+/* ===== CONTAINER CENTER ===== */
+.container {
+    padding: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+    border: none;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+/* Hover card */
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===== TITLE ===== */
+.card h3 {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* Subtitle */
+.card p {
+    font-size: 13px;
+}
+
+/* ===== INPUT ===== */
+input {
+    border-radius: 10px !important;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    transition: all 0.25s ease;
+}
+
+/* Fokus input */
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+    outline: none;
+}
+
+/* ===== LABEL ===== */
+label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #374151;
+}
+
+/* ===== HASIL ===== */
+#hasil {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Animasi muncul */
+#hasil:hover {
+    transform: scale(1.02);
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .card {
+        max-width: 90%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .card {
+        padding: 15px !important;
+        border-radius: 14px;
+    }
+
+    #hasil {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+}
