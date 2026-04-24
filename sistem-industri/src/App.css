@@ -1,0 +1,45 @@
+/* --- Kode Bawaan Vite (Disederhanakan) --- */
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.kartu-kustom {
+  border: none !important;
+  border-radius: 15px !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  background: white;
+}
+
+.kartu-kustom:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.badge-kustom {
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 0.75rem !important;
+}
+
+.tombol-navigasi {
+  border-radius: 50px !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.tombol-navigasi:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .tombol-navigasi {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}

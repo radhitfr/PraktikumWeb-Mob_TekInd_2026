@@ -1,0 +1,21 @@
+/* Import Font Modern dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f4f8; /* Warna background abu-abu kebiruan yang elegan */
+  color: #334155; /* Warna teks yang tidak terlalu hitam pekat agar nyaman dibaca */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mengatur style heading global */
+h2, h4, h5 {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+hr {
+  border-color: #cbd5e1;
+}
