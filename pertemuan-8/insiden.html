@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Andon & Insiden Produksi</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style_insiden.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar ind-navbar sticky-top">
+    <div class="container-fluid px-4 text-white">
+        <span class="navbar-brand fw-bold text-white fs-5">
+            <i class="bi bi-gear-wide-connected text-warning me-2"></i>
+            SISTEM MONITORING PRODUKSI
+        </span>
+
+        <div class="d-flex align-items-center">
+            <span class="badge bg-dark border border-secondary me-3 px-3 py-2">
+                Shift: <span class="text-warning">2 (14:00 - 22:00)</span>
+            </span>
+
+            <span class="badge ind-status-online px-3 py-2">
+                <i class="bi bi-broadcast"></i> Sensor: Aktif
+            </span>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid px-5 my-4">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-3">
+        <div>
+            <h2 class="fw-bold m-0 header-title">Daftar Insiden Lini Produksi</h2>
+            <p class="text-muted small m-0 mt-1">
+                Menampilkan 10 data terbaru dari sistem pusat.
+            </p>
+        </div>
+
+        <button class="btn btn-outline-secondary btn-sm fw-bold shadow-sm" onclick="muatDataLaporan()">
+            <i class="bi bi-arrow-repeat"></i> Sinkronisasi
+        </button>
+    </div>
+
+    <!-- KPI -->
+    <div id="statsBar" class="row g-3 mb-4 d-none">
+        <div class="col-md-4">
+            <div class="kpi-card border-left-blue">
+                <div>
+                    <h6 class="kpi-title">Total Insiden</h6>
+                    <h3 class="kpi-value" id="statTotal">0</h3>
+                </div>
+                <i class="bi bi-clipboard-data kpi-icon text-primary"></i>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="kpi-card border-left-red">
+                <div>
+                    <h6 class="kpi-title">Belum Ditangani</h6>
+                    <h3 class="kpi-value text-danger" id="statPending">0</h3>
+                </div>
+                <i class="bi bi-exclamation-octagon kpi-icon text-danger"></i>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="kpi-card border-left-green">
+                <div>
+                    <h6 class="kpi-title">Sedang Diproses</h6>
+                    <h3 class="kpi-value text-success" id="statProses">0</h3>
+                </div>
+                <i class="bi bi-tools kpi-icon text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOADING -->
+    <div id="loadingState" class="d-none d-flex justify-content-center align-items-center py-5">
+        <div class="spinner-border text-primary me-3"></div>
+        <span class="fw-bold text-secondary">Memuat data...</span>
+    </div>
+
+    <!-- ERROR -->
+    <div id="errorState" class="alert alert-danger d-none fw-bold">
+        <i class="bi bi-cone-striped me-2"></i>
+        <span id="errorMsg"></span>
+    </div>
+
+    <!-- EMPTY -->
+    <div id="emptyState" class="alert alert-success d-none fw-bold">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        Tidak ada insiden.
+    </div>
+
+    <!-- DATA -->
+    <div class="row g-3 pb-5" id="containerLaporan"></div>
+
+</div>
+
+<script src="insiden.js"></script>
+
+</body>
+</html>
