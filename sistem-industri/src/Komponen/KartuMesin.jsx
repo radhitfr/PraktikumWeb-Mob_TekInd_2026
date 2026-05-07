@@ -1,35 +1,53 @@
-// 1. Import React
-import React from 'react';
+import React, { useState } from 'react';
 
-// 2. Membuat Komponen Fungsi yang menerima 'props'
 function KartuMesin(props) {
 
-  // Menerima data dari props
   const namaMesin = props.nama;
   const status = props.status;
   const produksi = props.produksi;
 
-  // Logika penentuan warna badge berdasarkan status
+  // State lokal
+  const [statusLokal, setStatusLokal] = useState(status);
+
+  // Badge berdasarkan status lokal
   let badgeColor = 'bg-secondary';
 
-  if (status === 'Running') badgeColor = 'bg-success';
-  if (status === 'Stop') badgeColor = 'bg-danger';
-  if (status === 'Maintenance') badgeColor = 'bg-warning';
+  if (statusLokal === 'Running') badgeColor = 'bg-success';
+  if (statusLokal === 'Stop') badgeColor = 'bg-danger';
+  if (statusLokal === 'Maintenance') badgeColor = 'bg-warning';
 
   return (
-    // Menggunakan class -> className di JSX
     <div className="card shadow-sm p-3 mb-3">
       <div className="card-body">
+
         <h5 className="card-title">{namaMesin}</h5>
-        <span className={`badge ${badgeColor}`}>{status}</span>
+
+        <span className={`badge ${badgeColor}`}>
+          {statusLokal}
+        </span>
+
         <hr />
+
         <p>
           Produksi Saat Ini: <strong>{produksi}</strong> Unit
         </p>
+
+        {/* Select status */}
+        <div className="mt-3">
+          <select
+            className="form-select form-select-sm"
+            value={statusLokal}
+            onChange={(e) => setStatusLokal(e.target.value)}
+          >
+            <option value="Running">Running</option>
+            <option value="Stop">Stop</option>
+            <option value="Maintenance">Maintenance</option>
+          </select>
+        </div>
+
       </div>
     </div>
   );
 }
 
-// 3. Export agar bisa dipakai di file lain
 export default KartuMesin;
