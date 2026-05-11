@@ -1,342 +1,265 @@
-import React, { useState } from 'react';
-import './App.css';
+import React from 'react';
 
-// ================= IMPORT KOMPONEN PERTEMUAN 9 =================
-import KartuMesin from './Komponen/KartuMesin';
-import KartuMesinLat1 from './Komponen/KartuMesinLat1';
-import KartuMesinLat2 from './Komponen/KartuMesinLat2';
-import KartuKaryawan from './Komponen/KartuKaryawan';
+import {
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from 'react-router-dom';
 
-// ================= IMPORT KOMPONEN PERTEMUAN 10 =================
-import CounterProduksi from './Komponen/CounterProduksi';
-import JamDigital from './Komponen/JamDigital';
-import KalkulatorOEE from './Komponen/KalkulatorOEE';
+import Dashboard from './Halaman/Dashboard';
+import Inventori from './Halaman/Inventori';
+import DetailInventori from './Halaman/DetailInventori';
+import LaporanKualitas from './Halaman/LaporanKualitas';
+import Praktikum from './Halaman/Praktikum';
+import NotFound from './Halaman/NotFound';
 
-function App() {
+// ======================================================
+// ===================== NAVBAR =========================
+// ======================================================
 
-  // ================= STATE NAVIGASI =================
-  const [halaman, setHalaman] = useState('Praktikum');
+function Navbar() {
+
+  const location = useLocation();
+
+  // ================= ACTIVE MENU =================
+  const aktif = (path) => {
+    return location.pathname === path
+      ? 'nav-link active fw-semibold text-info'
+      : 'nav-link text-light';
+  };
 
   return (
-    <div className="container mt-5 mb-5">
+    <nav
+      className="
+        navbar
+        navbar-expand-lg
+        navbar-dark
+        bg-dark
+        shadow-sm
+        sticky-top
+      "
+    >
 
-      {/* ====================================================== */}
-      {/* ======================== HEADER ====================== */}
-      {/* ====================================================== */}
+      <div className="container-fluid px-3 px-md-4">
 
-      <h2 className="text-center mb-2">
-        Monitoring Lini Produksi
-      </h2>
+        {/* ================= LOGO ================= */}
 
-      <p className="text-center text-muted mb-5">
-        Radhitya Adha Fadhlur Rohman (23051430005)
-      </p>
-
-      {/* ====================================================== */}
-      {/* ======================= NAVIGASI ===================== */}
-      {/* ====================================================== */}
-
-      <div className="d-flex justify-content-center gap-3 mb-5 flex-wrap">
-
-        {/* Praktikum */}
-        <button
-          className={`btn tombol-navigasi ${
-            halaman === 'Praktikum'
-              ? 'btn-primary'
-              : 'btn-outline-primary'
-          }`}
-          onClick={() => setHalaman('Praktikum')}
+        <Link
+          className="
+            navbar-brand
+            fw-bold
+            d-flex
+            align-items-center
+            gap-2
+          "
+          to="/"
         >
-          Versi Praktikum
+
+          <span style={{ fontSize: '28px' }}>
+            🏭
+          </span>
+
+          <div>
+
+            <div
+              style={{
+                fontSize: '18px',
+                lineHeight: '1.1',
+              }}
+            >
+              Sistem Monitoring
+            </div>
+
+            <small
+              className="text-light opacity-75"
+              style={{ fontSize: '11px' }}
+            >
+              Industrial Smart Dashboard
+            </small>
+
+          </div>
+
+        </Link>
+
+        {/* ================= TOGGLER ================= */}
+
+        <button
+          className="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMenu"
+        >
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Latihan 1 */}
-        <button
-          className={`btn tombol-navigasi ${
-            halaman === 'latihan1'
-              ? 'btn-info text-white'
-              : 'btn-outline-info'
-          }`}
-          onClick={() => setHalaman('latihan1')}
-        >
-          Latihan 1
-        </button>
+        {/* ================= MENU ================= */}
 
-        {/* Latihan 2 */}
-        <button
-          className={`btn tombol-navigasi ${
-            halaman === 'latihan2'
-              ? 'btn-success'
-              : 'btn-outline-success'
-          }`}
-          onClick={() => setHalaman('latihan2')}
+        <div
+          className="collapse navbar-collapse"
+          id="navbarMenu"
         >
-          Latihan 2
-        </button>
 
-        {/* Tugas Mini */}
-        <button
-          className={`btn tombol-navigasi ${
-            halaman === 'tugas'
-              ? 'btn-warning text-dark'
-              : 'btn-outline-warning'
-          }`}
-          onClick={() => setHalaman('tugas')}
-        >
-          Tugas Proyek Mini
-        </button>
+          <div
+            className="
+              navbar-nav
+              ms-auto
+              align-items-lg-center
+              gap-lg-2
+              mt-3
+              mt-lg-0
+            "
+          >
 
-        {/* Pertemuan 10 */}
-        <button
-          className={`btn tombol-navigasi ${
-            halaman === 'state'
-              ? 'btn-danger'
-              : 'btn-outline-danger'
-          }`}
-          onClick={() => setHalaman('state')}
-        >
-          Pertemuan 10
-        </button>
+            {/* DASHBOARD */}
+            <Link
+              className={aktif('/')}
+              to="/"
+            >
+              Dashboard
+            </Link>
+
+            {/* INVENTORI */}
+            <Link
+              className={aktif('/inventori')}
+              to="/inventori"
+            >
+              Inventori
+            </Link>
+
+            {/* LAPORAN */}
+            <Link
+              className={aktif('/laporan-kualitas')}
+              to="/laporan-kualitas"
+            >
+              Laporan
+            </Link>
+
+            {/* PRAKTIKUM */}
+            <Link
+              className={aktif('/praktikum')}
+              to="/praktikum"
+            >
+              Praktikum
+            </Link>
+
+            {/* TEST ERROR */}
+            <Link
+              className="nav-link text-danger fw-semibold"
+              to="/halaman-error"
+            >
+              Test 404
+            </Link>
+
+          </div>
+
+        </div>
 
       </div>
 
-      {/* ====================================================== */}
-      {/* ================= 1. PRAKTIKUM ======================= */}
-      {/* ====================================================== */}
+    </nav>
+  );
+}
 
-      {halaman === 'Praktikum' && (
-        <div>
+// ======================================================
+// ======================= APP ==========================
+// ======================================================
 
-          <h4 className="text-center mb-4">
-            1. Versi Praktikum (Props)
-          </h4>
+function App() {
 
-          <div className="row g-4">
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        background:
+          'linear-gradient(135deg, #f5f7fa, #dfe9f3)',
+      }}
+    >
 
-            <div className="col-md-4">
-              <KartuMesin
-                nama="CNC-Turning-01"
-                status="Running"
-                produksi={150}
-              />
-            </div>
+      {/* ================= NAVBAR ================= */}
 
-            <div className="col-md-4">
-              <KartuMesin
-                nama="CNC-Milling-02"
-                status="Maintenance"
-                produksi={0}
-              />
-            </div>
+      <Navbar />
 
-            <div className="col-md-4">
-              <KartuMesin
-                nama="Press-Hydraulic-05"
-                status="Stop"
-                produksi={85}
-              />
-            </div>
+      {/* ================= MAIN CONTENT ================= */}
 
-          </div>
+      <main className="py-3 py-md-4">
 
-        </div>
-      )}
+        <div className="container-fluid px-3 px-md-4">
 
-      {/* ====================================================== */}
-      {/* ================= 2. LATIHAN 1 ======================= */}
-      {/* ====================================================== */}
+          <div
+            className="
+              card
+              border-0
+              shadow-lg
+              rounded-4
+              overflow-hidden
+            "
+          >
 
-      {halaman === 'latihan1' && (
-        <div>
+            <div className="p-2 p-md-3 p-lg-4">
 
-          <h4 className="text-center mb-4 text-info">
-            2. Latihan 1 (Destructuring Props)
-          </h4>
+              {/* ================= ROUTES ================= */}
 
-          <div className="row g-4">
+              <Routes>
 
-            <div className="col-md-4">
-              <KartuMesinLat1
-                nama="CNC-Grinding-03"
-                status="Maintenance"
-                produksi={50}
-              />
-            </div>
-
-            <div className="col-md-4">
-              <KartuMesinLat1
-                nama="CNC-Drilling-04"
-                status="Running"
-                produksi={210}
-              />
-            </div>
-
-            <div className="col-md-4">
-              <KartuMesinLat1
-                nama="Lathe-Machine-06"
-                status="Stop"
-                produksi={0}
-              />
-            </div>
-
-          </div>
-
-        </div>
-      )}
-
-      {/* ====================================================== */}
-      {/* ================= 3. LATIHAN 2 ======================= */}
-      {/* ====================================================== */}
-
-      {halaman === 'latihan2' && (
-        <div>
-
-          <h4 className="text-center mb-4 text-success">
-            3. Latihan 2 (Default Props)
-          </h4>
-
-          <div className="row g-4">
-
-            <div className="col-md-4">
-              <KartuMesinLat2
-                nama="Assembly-Line-01"
-                status="Stop"
-              />
-            </div>
-
-            <div className="col-md-4">
-              <KartuMesinLat2
-                nama="Packaging-Unit-02"
-                status="Running"
-                produksi={175}
-              />
-            </div>
-
-            <div className="col-md-4">
-              <KartuMesinLat2
-                nama="Inspection-Unit-03"
-                status="Maintenance"
-              />
-            </div>
-
-          </div>
-
-        </div>
-      )}
-
-      {/* ====================================================== */}
-      {/* ================= 4. TUGAS MINI ====================== */}
-      {/* ====================================================== */}
-
-      {halaman === 'tugas' && (
-        <div>
-
-          <h4 className="text-center mb-4 text-warning">
-            4. Tugas Proyek Mini (Data Karyawan)
-          </h4>
-
-          <div className="row g-4">
-
-            <div className="col-md-4">
-              <KartuKaryawan
-                nama="Bambang Subejo"
-                jabatan="Manager"
-                bagian="Produksi"
-              />
-            </div>
-
-            <div className="col-md-4">
-              <KartuKaryawan
-                nama="Fadhil Alamsyah"
-                jabatan="Operator"
-                bagian="Lini Perakitan 1"
-              />
-            </div>
-
-            <div className="col-md-4">
-              <KartuKaryawan
-                nama="Adhe Surakjat"
-                jabatan="QC"
-                bagian="Quality Assurance"
-              />
-            </div>
-
-          </div>
-
-        </div>
-      )}
-
-      {/* ====================================================== */}
-      {/* ================= 5. PERTEMUAN 10 ==================== */}
-      {/* ====================================================== */}
-
-      {halaman === 'state' && (
-        <div>
-
-          <h4 className="text-center mb-4 text-danger">
-            5. Pertemuan 10 (State, Hooks, Conditional Rendering)
-          </h4>
-
-          {/* ================= JAM DIGITAL ================= */}
-          <div className="mb-5">
-            <JamDigital />
-          </div>
-
-          {/* ================= COUNTER PRODUKSI ================= */}
-          <div className="mb-5">
-            <CounterProduksi />
-          </div>
-
-          {/* ================= KARTU MESIN DINAMIS ================= */}
-          <div className="mb-5">
-
-            <h4 className="text-center mb-4">
-              Monitoring Status Mesin
-            </h4>
-
-            <div className="row g-4">
-
-              <div className="col-md-4">
-                <KartuMesin
-                  nama="CNC-Turning-01"
-                  status="Running"
-                  produksi={150}
+                {/* DASHBOARD */}
+                <Route
+                  path="/"
+                  element={<Dashboard />}
                 />
-              </div>
 
-              <div className="col-md-4">
-                <KartuMesin
-                  nama="CNC-Milling-02"
-                  status="Maintenance"
-                  produksi={0}
+                {/* INVENTORI */}
+                <Route
+                  path="/inventori"
+                  element={<Inventori />}
                 />
-              </div>
 
-              <div className="col-md-4">
-                <KartuMesin
-                  nama="Press-Hydraulic-05"
-                  status="Stop"
-                  produksi={85}
+                {/* DETAIL INVENTORI */}
+                <Route
+                  path="/inventori/:id"
+                  element={<DetailInventori />}
                 />
-              </div>
+
+                {/* LAPORAN */}
+                <Route
+                  path="/laporan-kualitas"
+                  element={<LaporanKualitas />}
+                />
+
+                {/* PRAKTIKUM */}
+                <Route
+                  path="/praktikum"
+                  element={<Praktikum />}
+                />
+
+                {/* 404 */}
+                <Route
+                  path="*"
+                  element={<NotFound />}
+                />
+
+              </Routes>
 
             </div>
 
           </div>
 
-          {/* ================= KALKULATOR OEE ================= */}
-          <div className="mt-5">
-
-            <h4 className="text-center mb-4 text-primary">
-              Proyek Mini - Kalkulator OEE
-            </h4>
-
-            <KalkulatorOEE />
-
-          </div>
-
         </div>
-      )}
+
+      </main>
+
+      {/* ====================================================== */}
+      {/* ======================= FOOTER ======================= */}
+      {/* ====================================================== */}
+
+      <footer className="text-center py-4 text-muted">
+
+        <small>
+          © 2026 Sistem Monitoring Industri —
+          Teknik Industri
+        </small>
+
+      </footer>
 
     </div>
   );
